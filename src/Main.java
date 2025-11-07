@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static List<Todo> todoList = new ArrayList<>();
+    private static int nextId = 1;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean continuer = true;
@@ -12,7 +17,7 @@ public class Main {
 
             switch (choix) {
                 case 1:
-                    System.out.println("Fonctionnalité à venir...");
+                    ajouterTache(scanner);
                     break;
                 case 0:
                     continuer = false;
@@ -30,5 +35,13 @@ public class Main {
     System.out.println("1. Ajouter une tâche");
     System.out.println("0. Quitter");
     System.out.print("Choisissez une option: ");
+    }
+
+    private static void ajouterTache(Scanner scanner) {
+        System.out.print("Entrez le titre de la tâche: ");
+        String title = scanner.nextLine();
+        Todo newTodo = new Todo(nextId++, title);
+        todoList.add(newTodo);
+        System.out.println("Tâche ajoutée: " + newTodo);
     }
 }
