@@ -19,6 +19,9 @@ public class Main {
                 case 1:
                     ajouterTache(scanner);
                     break;
+                case 2:
+                    listerTaches();
+                    break;
                 case 0:
                     continuer = false;
                     System.out.println("Au revoir!");
@@ -33,6 +36,7 @@ public class Main {
     private static void afficherMenu() {
     System.out.println("=== TODO LIST ===");
     System.out.println("1. Ajouter une tâche");
+    System.out.println("2. Lister les tâches");
     System.out.println("0. Quitter");
     System.out.print("Choisissez une option: ");
     }
@@ -43,5 +47,16 @@ public class Main {
         Todo newTodo = new Todo(nextId++, title);
         todoList.add(newTodo);
         System.out.println("Tâche ajoutée: " + newTodo);
+    }
+
+    private static void listerTaches() {
+        if (todoList.isEmpty()) {
+            System.out.println("Aucune tâche dans la liste.");
+            return;
+        }
+        System.out.println("=== Liste des tâches ===");
+        for (Todo todo : todoList) {
+            System.out.println(todo);
+        }
     }
 }

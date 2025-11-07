@@ -23,7 +23,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        String status = completed ? "[✓]" : "[✗]";
+        String status = completed ? "[DONE]" : "[TODO]";
         return status + " " + id + ". " + title;
     }
 }
