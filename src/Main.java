@@ -28,6 +28,9 @@ public class Main {
                 case 4:
                     supprimerTache(scanner);
                     break;
+                case 5:
+                    modifierTache(scanner);
+                    break;
                 case 0:
                     continuer = false;
                     System.out.println("Au revoir!");
@@ -45,6 +48,7 @@ public class Main {
     System.out.println("2. Lister les tâches");
     System.out.println("3. Marquer une tâche comme complétée");
     System.out.println("4. Supprimer une tâche");
+    System.out.println("5. Modifier une tâche");
     System.out.println("0. Quitter");
     System.out.print("Choisissez une option: ");
     }
@@ -142,5 +146,30 @@ public class Main {
             }
         }
         return null;
+    }
+
+    private static void modifierTache(Scanner scanner) {
+        if (todoList.isEmpty()) {
+            System.out.println("Aucune tâche dans la liste.");
+            return;
+        }
+
+        listerTaches();
+
+        System.out.print("Entrez l'ID de la tâche à modifier: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Todo foundTodo = trouverTacheParId(id);
+
+        if (foundTodo == null) {
+            System.out.println("Tâche avec l'ID " + id + " non trouvée.");
+            return;
+        }
+
+        System.out.print("Entrez le nouveau titre pour la tâche (actuel: " + foundTodo.getTitle() + "): ");
+        String newTitle = scanner.nextLine();
+        foundTodo.setTitle(newTitle);
+        System.out.println("Tâche modifiée: " + foundTodo);
     }
 }
