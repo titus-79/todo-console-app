@@ -63,8 +63,18 @@ public class Main {
             return;
         }
         System.out.println("=== Liste des tâches ===");
+        System.out.println("--- En cours ---");
+
         for (Todo todo : todoList) {
-            System.out.println(todo);
+            if (!todo.isCompleted()) {
+                System.out.println(todo);
+                }
+            }
+        System.out.println("\n--- Terminées ---");
+        for (Todo todo : todoList) {
+            if (todo.isCompleted()) {
+                System.out.println(todo);
+            }
         }
     }
 
