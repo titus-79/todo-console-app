@@ -80,13 +80,8 @@ public class Main {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        Todo foundTodo = null;
-        for (Todo todo : todoList) {
-            if (todo.getId() == id) {
-                foundTodo = todo;
-                break;
-            }
-        }
+        Todo foundTodo = trouverTacheParId(id);
+
         if (foundTodo == null) {
             System.out.println("Tâche avec l'ID " + id + " non trouvée.");
             return;
@@ -112,13 +107,8 @@ public class Main {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        Todo foundTodo = null;
-        for (Todo todo : todoList) {
-            if (todo.getId() == id) {
-                foundTodo = todo;
-                break;
-            }
-        }
+        Todo foundTodo = trouverTacheParId(id);
+
         if (foundTodo == null) {
             System.out.println("Tâche avec l'ID " + id + " non trouvée.");
             return;
@@ -133,5 +123,14 @@ public class Main {
 
         todoList.remove(foundTodo);
         System.out.println("Tâche supprimée: " + foundTodo);
+    }
+
+    private static Todo trouverTacheParId(int id) {
+        for (Todo todo : todoList) {
+            if (todo.getId() == id) {
+                return todo;
+            }
+        }
+        return null;
     }
 }
