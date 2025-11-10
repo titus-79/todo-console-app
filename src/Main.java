@@ -25,6 +25,9 @@ public class Main {
                 case 3:
                     marquerCommeComplete(scanner);
                     break;
+                case 4:
+                    supprimerTache(scanner);
+                    break;
                 case 0:
                     continuer = false;
                     System.out.println("Au revoir!");
@@ -41,6 +44,7 @@ public class Main {
     System.out.println("1. Ajouter une tâche");
     System.out.println("2. Lister les tâches");
     System.out.println("3. Marquer une tâche comme complétée");
+    System.out.println("4. Supprimer une tâche");
     System.out.println("0. Quitter");
     System.out.print("Choisissez une option: ");
     }
@@ -94,5 +98,40 @@ public class Main {
             foundTodo.setCompleted(true);
             System.out.println("Tâche marquée comme complétée: " + foundTodo);
         }
+    }
+
+    private static void supprimerTache(Scanner scanner) {
+        if (todoList.isEmpty()) {
+            System.out.println("Aucune tâche dans la liste.");
+            return;
+        }
+
+        listerTaches();
+
+        System.out.print("Entrez l'ID de la tâche à supprimer: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Todo foundTodo = null;
+        for (Todo todo : todoList) {
+            if (todo.getId() == id) {
+                foundTodo = todo;
+                break;
+            }
+        }
+        if (foundTodo == null) {
+            System.out.println("Tâche avec l'ID " + id + " non trouvée.");
+            return;
+        }
+
+        System.out.println("Êtes-vous sûr de vouloir supprimer la tâche: " + foundTodo + " ? (o/n): ");
+        String confirmation = scanner.nextLine();
+        if (!confirmation.equalsIgnoreCase("o")) {
+            System.out.println("Suppression annulée.");
+            return;
+        }
+
+        todoList.remove(foundTodo);
+        System.out.println("Tâche supprimée: " + foundTodo);
     }
 }
